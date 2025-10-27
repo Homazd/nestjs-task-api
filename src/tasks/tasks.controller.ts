@@ -1,6 +1,6 @@
 import { Body, Controller, Delete, Get, NotFoundException, Param, Post, Put } from '@nestjs/common';
 import { TasksService } from './tasks.service';
-import { CreateTaskDTO, Task, UpdateTaskDTO } from './task.dto';
+import { CreateTaskDto, Task, UpdateTaskDto } from './task.dto';
 
 @Controller('tasks')
 export class TasksController {
@@ -19,12 +19,12 @@ export class TasksController {
         }
     }
     @Post()
-    create(@Body() createTaskDto: CreateTaskDTO): Task {
+    create(@Body() createTaskDto: CreateTaskDto): Task {
         return this.tasksService.create(createTaskDto)
     }
 
     @Put(':id')
-    update(@Param('id') id: string, @Body() updateTaskDTO: UpdateTaskDTO): Task {
+    update(@Param('id') id: string, @Body() updateTaskDTO: UpdateTaskDto): Task {
         try {
             return this.tasksService.update(parseInt(id), updateTaskDTO)
         } catch (error) {

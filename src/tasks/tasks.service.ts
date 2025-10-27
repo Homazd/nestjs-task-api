@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { CreateTaskDTO, Task, UpdateTaskDTO } from './task.dto';
+import { CreateTaskDto, Task, UpdateTaskDto } from './task.dto';
 @Injectable()
 export class TasksService {
     private tasks: Task[] = [];
@@ -16,7 +16,7 @@ export class TasksService {
         return task;
     }
 
-    create(createTaskDTO: CreateTaskDTO): Task {
+    create(createTaskDTO: CreateTaskDto): Task {
         const newTask: Task = {
             id: this.idCounter++,
             title: createTaskDTO.title,
@@ -25,7 +25,7 @@ export class TasksService {
         this.tasks.push(newTask);
         return newTask;
     }
-    update(id: number, updateTaskDTO: UpdateTaskDTO): Task {
+    update(id: number, updateTaskDTO: UpdateTaskDto): Task {
         const task = this.findOne(id);
         if (updateTaskDTO.title) {
             task.title = updateTaskDTO.title;
